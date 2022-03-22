@@ -11,6 +11,8 @@ namespace AppCore.IServices
 
         void Add(T t);
         void Delete(T t);
+
+        int Update(T t);
         List<T> Read();
     }
 }
