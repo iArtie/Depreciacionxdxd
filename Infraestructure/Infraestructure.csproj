@@ -44,10 +44,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepositoy.cs" />
     <Compile Include="Repository\BinaryActivoRepository.cs" />
+    <Compile Include="Repository\BinaryEmpleadoRepository.cs" />
     <Compile Include="Repository\BinaryReaderExtension.cs" />
+    <Compile Include="Repository\EmpleadoRAFContext.cs" />
     <Compile Include="Repository\ListActivoRepository.cs" />
     <Compile Include="Repository\RafContext.cs" />
     <Compile Include="Repository\StreamActivoRepository.cs" />
+    <Compile Include="Repository\StreamEmpleadoReopsitory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

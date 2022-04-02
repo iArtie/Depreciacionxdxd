@@ -26,6 +26,10 @@ namespace AppCore.Services
             Model.Delete(t);
         }
 
+        public int Update(T t)
+        {
+            return Model.Update(t);
+        }
         public List<T> Read()
         {
             return Model.Read();

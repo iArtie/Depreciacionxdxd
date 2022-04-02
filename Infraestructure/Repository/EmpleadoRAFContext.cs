@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -10,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Infraestructure.Repository
 {
-    public class RAFContext
+    public class EmpleadoRAFContext
     {
-        
         private string fileName;
         private int size;
         public int Ne;
-        public RAFContext(string fileName, int size)
+        public EmpleadoRAFContext(string fileName, int size)
         {
             this.fileName = fileName;
             this.size = size;
@@ -118,7 +116,7 @@ namespace Infraestructure.Repository
             {
                 throw;
             }
-            
+
         }
 
         public T Get<T>(int id)
@@ -130,14 +128,14 @@ namespace Infraestructure.Repository
                 using (BinaryReader brHeader = new BinaryReader(HeaderStream),
                                     brData = new BinaryReader(DataStream))
                 {
-                    if(brHeader.BaseStream.Length > 0)
+                    if (brHeader.BaseStream.Length > 0)
                     {
                         brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
                         n = brHeader.ReadInt32();
                         k = brHeader.ReadInt32();
                     }
-                    
-                    if(n == 0)
+
+                    if (n == 0)
                     {
                         return default(T);
                     }
@@ -201,7 +199,7 @@ namespace Infraestructure.Repository
                         {
                             pinfo.SetValue(newValue, brData.GetValue<string>(TypeCode.String));
                         }
-                    }                    
+                    }
                 }
                 return newValue;
             }
@@ -209,7 +207,7 @@ namespace Infraestructure.Repository
             {
                 throw;
             }
-            
+
 
         }
 
@@ -232,7 +230,7 @@ namespace Infraestructure.Repository
         }
 
 
-            public int Update<T>(T t)
+        public int Update<T>(T t)
         {
             int Id = int.Parse(t.GetType().GetProperty("Id").GetValue(t).ToString());
             using (BinaryReader brHeader = new BinaryReader(HeaderStream),
@@ -244,7 +242,7 @@ namespace Infraestructure.Repository
                 {
                     n = 0;
                     k = 0;
-                   
+
                 }
                 n = brHeader.ReadInt32();
                 k = brHeader.ReadInt32();
@@ -273,37 +271,37 @@ namespace Infraestructure.Repository
                             continue;
                         }
                         if (type == typeof(int))
-                            {
+                        {
                             binaryData.Write((int)obj);
-                            }
-                            else if (type == typeof(long))
-                            {
-                                binaryData.Write((long)obj);
-                            }
-                            else if (type == typeof(float))
-                            {
+                        }
+                        else if (type == typeof(long))
+                        {
+                            binaryData.Write((long)obj);
+                        }
+                        else if (type == typeof(float))
+                        {
                             binaryData.Write((float)obj);
-                            }
-                            else if (type == typeof(double))
-                            {
+                        }
+                        else if (type == typeof(double))
+                        {
                             binaryData.Write((double)obj);
-                            }
-                            else if (type == typeof(decimal))
-                            {
+                        }
+                        else if (type == typeof(decimal))
+                        {
                             binaryData.Write((decimal)obj);
-                            }
-                            else if (type == typeof(char))
-                            {
+                        }
+                        else if (type == typeof(char))
+                        {
                             binaryData.Write((char)obj);
-                            }
-                            else if (type == typeof(bool))
-                            {
+                        }
+                        else if (type == typeof(bool))
+                        {
                             binaryData.Write((bool)obj);
-                            }
-                            else if (type == typeof(string))
-                            {
+                        }
+                        else if (type == typeof(string))
+                        {
                             binaryData.Write((string)obj);
-                            }
+                        }
                     }
                 }
             }
@@ -318,14 +316,14 @@ namespace Infraestructure.Repository
             {
                 using (BinaryReader brHeader = new BinaryReader(HeaderStream))
                 {
-                    if(brHeader.BaseStream.Length > 0)
+                    if (brHeader.BaseStream.Length > 0)
                     {
                         brHeader.BaseStream.Seek(0, SeekOrigin.Begin);
-                        n = brHeader.ReadInt32();                        
-                    }                    
+                        n = brHeader.ReadInt32();
+                    }
                 }
 
-                if(n == 0)
+                if (n == 0)
                 {
                     return listT;
                 }
@@ -344,11 +342,12 @@ namespace Infraestructure.Repository
                     {
                         continue;
                     }
-                    else {
+                    else
+                    {
                         T t = Get<T>(index);
                         listT.Add(t);
                     }
-                   
+
                 }
 
                 return listT;
@@ -357,7 +356,7 @@ namespace Infraestructure.Repository
             {
                 throw;
             }
-            
+
         }
 
         public List<T> Find<T>(Expression<Func<T, bool>> where)
@@ -404,7 +403,8 @@ namespace Infraestructure.Repository
             catch (Exception)
             {
                 throw;
-            }            
+            }
         }
     }
 }
+

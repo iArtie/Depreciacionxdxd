@@ -11,7 +11,7 @@ namespace Infraestructure.Repository
     public class BinaryActivoRepository : IActivoModel
     {
         public RAFContext context;
-        public const int SIZE = 119;
+        public const int SIZE = 317;
         public BinaryActivoRepository()
         {
             context = new RAFContext("activo", SIZE);
@@ -33,6 +33,11 @@ namespace Infraestructure.Repository
             context.Delete(t.Id);
         }
 
+        public int Update(Activo t) {
+
+            return context.Update<Activo>(t);
+            
+        }
         public Activo GetById(int id)
         {
 
