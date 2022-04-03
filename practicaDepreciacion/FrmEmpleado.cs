@@ -23,6 +23,7 @@ namespace practicaDepreciacion
         public int xdd;
         public int awa;
         public int index;
+        public IActivoServices activoServices { get; set; }
         public IEmpleadoServices empleadoServices{ get; set; }
     public FrmEmpleado(int index)
         {
@@ -203,7 +204,9 @@ namespace practicaDepreciacion
 
         private void FrmEmpleado_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
+            Form1 rawr = new Form1(activoServices, empleadoServices);
+            //Form1.activoServices = activoServices;
+            rawr.Show();
         }
     }
 }

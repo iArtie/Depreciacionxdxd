@@ -232,22 +232,34 @@ namespace practicaDepreciacion
 
         private void CmbEmpelado_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            FrmEmpleado Empleadoqwq = new FrmEmpleado(index);
+
             if (cmbEmpelado.Text == "Agregar")
             {
                 index = -1;
-                FrmEmpleado Empleadoqwq = new FrmEmpleado(index);
+                
                 //Application.Run(new FrmEmpleado(iwi.Resolve<IEmpleadoServices>()));
                 Empleadoqwq.empleadoServices = empleadoServices;
+                Empleadoqwq.activoServices = activoServices;
                 Empleadoqwq.Show();
                 limpiar();
-                cmbEmpelado.Items.Clear();
-                AgregarItems();
+                
                 cmbEmpelado.Text = String.Empty;
-                //Hide();
+                Hide();
             }
+           
+            cmbEmpelado.Items.Clear();
+          
+            
+            //AgregarItems();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
         //XDDDDDDDDDDDDDDDDDD
 
-        //ANDO BUSCANDO QUE COMER XD
+      
     }
 }
