@@ -18,7 +18,7 @@ namespace Domain.Entities
         public string Codigo  { get; set; }
         public string Estado { get; set; }
 
-        public int Empleado { get; set; }
+        public string Empleado { get; set; }
 
     }
 }

@@ -47,6 +47,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCed = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textIDemp = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataEmpleado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -69,14 +71,17 @@
             this.bntEmpleadoUp.TabIndex = 1;
             this.bntEmpleadoUp.Text = "Modificar";
             this.bntEmpleadoUp.UseVisualStyleBackColor = true;
+            this.bntEmpleadoUp.Click += new System.EventHandler(this.BntEmpleadoUp_Click);
             // 
             // dataEmpleado
             // 
             this.dataEmpleado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataEmpleado.Location = new System.Drawing.Point(360, 12);
             this.dataEmpleado.Name = "dataEmpleado";
+            this.dataEmpleado.ReadOnly = true;
             this.dataEmpleado.Size = new System.Drawing.Size(587, 418);
             this.dataEmpleado.TabIndex = 2;
+            this.dataEmpleado.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataEmpleado_CellClick);
             // 
             // label1
             // 
@@ -196,6 +201,7 @@
             this.btnEmpleadoDel.TabIndex = 15;
             this.btnEmpleadoDel.Text = "Eliminar";
             this.btnEmpleadoDel.UseVisualStyleBackColor = true;
+            this.btnEmpleadoDel.Click += new System.EventHandler(this.BtnEmpleadoDel_Click);
             // 
             // pictureBox1
             // 
@@ -223,11 +229,31 @@
             this.txtCed.Size = new System.Drawing.Size(247, 20);
             this.txtCed.TabIndex = 18;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 13);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(21, 13);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "ID:";
+            // 
+            // textIDemp
+            // 
+            this.textIDemp.AutoSize = true;
+            this.textIDemp.Location = new System.Drawing.Point(42, 13);
+            this.textIDemp.Name = "textIDemp";
+            this.textIDemp.Size = new System.Drawing.Size(10, 13);
+            this.textIDemp.TabIndex = 20;
+            this.textIDemp.Text = " ";
+            // 
             // FrmEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(971, 493);
+            this.Controls.Add(this.textIDemp);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtCed);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox1);
@@ -249,6 +275,7 @@
             this.Controls.Add(this.btnEmpleadoEnv);
             this.Name = "FrmEmpleado";
             this.Text = "FrmEmpleado";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEmpleado_FormClosing);
             this.Load += new System.EventHandler(this.FrmEmpleado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataEmpleado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -278,5 +305,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtCed;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label textIDemp;
     }
 }

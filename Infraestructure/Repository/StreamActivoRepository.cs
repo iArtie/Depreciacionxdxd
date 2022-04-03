@@ -91,7 +91,7 @@ namespace Infraestructure.Repository
                             Descripcion = binaryReader.ReadString(),
                             Codigo = binaryReader.ReadString(),
                             Estado = binaryReader.ReadString(),
-                            Empleado = binaryReader.ReadInt32()
+                            Empleado = binaryReader.ReadString()
                         };
 
                         if(activo.Id == id)

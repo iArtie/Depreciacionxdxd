@@ -77,14 +77,14 @@ namespace practicaDepreciacion
         private void txtEnviar_Click(object sender, EventArgs e)
         {
             bool verificado = verificar();
-            if (verificado == false)
+            if (verificado == false || cmbEmpelado.Text == "Agregar")
             {
                 MessageBox.Show("Tienes que llenar todos los formularios.");
             }
             else
             {
                 EstadoActivo n = (EstadoActivo)Enum.GetValues(typeof(EstadoActivo)).GetValue(cmbEstado.SelectedIndex);
-
+                string empxd = cmbEmpelado.SelectedItem.ToString();
                 Activo activo = new Activo()
                 {
                     Nombre = txtNombre.Text,
@@ -93,7 +93,8 @@ namespace practicaDepreciacion
                     VidaUtil = int.Parse(txtVidaU.Text),
                     Descripcion = txtDesc.Text,
                     Codigo = System.Guid.NewGuid().ToString(),
-                    Estado = n.ToString()
+                    Estado = n.ToString(),
+                    Empleado = empxd
 
                 };
                 activoServices.Add(activo);
@@ -126,10 +127,26 @@ namespace practicaDepreciacion
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            index = -1;
+            Empleado empleado;
+            FrmEmpleado Empleadoqwq = new FrmEmpleado(index);
+            Empleadoqwq.empleadoServices = empleadoServices;
             dataGridView1.DataSource = activoServices.Read();
             cmbEstado.DataSource = Enum.GetValues(typeof(EstadoActivo));
+            AgregarItems();
+            
+            //cmbEmpelado.Items.Add(empleado.Nombres);
         }
 
+        public void AgregarItems()
+        {
+            List<Empleado> empleadoxd = empleadoServices.Read();
+            for (int i = 0; i < empleadoxd.Count; i++)
+            {
+                cmbEmpelado.Items.Add(empleadoxd[i].Nombres);
+            }
+            cmbEmpelado.Items.Add("Agregar");
+        }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             activoServices.Delete(activoServices.Read()[awa]);
@@ -139,16 +156,22 @@ namespace practicaDepreciacion
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            int sandia = Int32.Parse(textoID.Text);
+           
+            
             bool verificado = verificar();
-            if (verificado == false)
+            if (textoID.Text == " ")
+            {
+                MessageBox.Show("Tiene que seleccionar un objeto para modificar");
+            }else if (verificado == false || cmbEmpelado.Text == "Agregar")
             {
                 MessageBox.Show("Tienes que llenar todos los formularios.");
+               
             }
             else
             {
+                int sandia = Int32.Parse(textoID.Text);
                 EstadoActivo n = (EstadoActivo)Enum.GetValues(typeof(EstadoActivo)).GetValue(cmbEstado.SelectedIndex);
-
+                string empxd = cmbEmpelado.SelectedItem.ToString();
                 Activo activo = new Activo()
                 {
                     Nombre = txtNombre.Text,
@@ -158,6 +181,7 @@ namespace practicaDepreciacion
                     Descripcion = txtDesc.Text,
                     Codigo = System.Guid.NewGuid().ToString(),
                     Estado = n.ToString(),
+                    Empleado = empxd,
                     Id = xdd
                 };
                 activoServices.Update(activo);
@@ -204,20 +228,22 @@ namespace practicaDepreciacion
 
 
 
-        private void CmbEmpelado_SelectedIndexChanged(object sender, EventArgs e)
+  
+
+        private void CmbEmpelado_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
-
-
             if (cmbEmpelado.Text == "Agregar")
             {
                 index = -1;
                 FrmEmpleado Empleadoqwq = new FrmEmpleado(index);
                 //Application.Run(new FrmEmpleado(iwi.Resolve<IEmpleadoServices>()));
+                Empleadoqwq.empleadoServices = empleadoServices;
                 Empleadoqwq.Show();
                 limpiar();
-                cmbEmpelado.Text = "";
-
+                cmbEmpelado.Items.Clear();
+                AgregarItems();
+                cmbEmpelado.Text = String.Empty;
+                //Hide();
             }
         }
         //XDDDDDDDDDDDDDDDDDD

@@ -20,9 +20,11 @@ namespace practicaDepreciacion
 {
     public partial class FrmEmpleado : Form
     {
+        public int xdd;
+        public int awa;
         public int index;
-        public IEmpleadoServices empleadoServices; /*{ get; set; }*/
-        public FrmEmpleado(int index)
+        public IEmpleadoServices empleadoServices{ get; set; }
+    public FrmEmpleado(int index)
         {
             this.index = index;
             InitializeComponent();
@@ -76,6 +78,7 @@ namespace practicaDepreciacion
         {
             try
             {
+                
                 dataEmpleado.DataSource = empleadoServices.Read();
             }
             catch (NullReferenceException)
@@ -133,7 +136,7 @@ namespace practicaDepreciacion
                     Telefono = int.Parse(txtPhone.Text),
                     email = txtEmail.Text,
                     Estado = d.ToString()
-
+                    
                 };
                 //try
                 //{
@@ -152,6 +155,55 @@ namespace practicaDepreciacion
                 dataEmpleado.DataSource = empleadoServices.Read();
 
             }
+        }
+
+        private void BntEmpleadoUp_Click(object sender, EventArgs e)
+        {
+            int sandia = Int32.Parse(textIDemp.Text);
+            bool verificado = verificarEmp();
+            if (verificado == false)
+            {
+                MessageBox.Show("Tienes que llenar todos los formularios.");
+            }
+            else
+            {
+                EstadoEmpleado d = (EstadoEmpleado)Enum.GetValues(typeof(EstadoEmpleado)).GetValue(cmbEmpleadoEst.SelectedIndex);
+                Empleado empleado = new Empleado()
+                {
+                    Nombres = txtName.Text,
+                    Apellidos = txtApellidos.Text,
+                    Cedula = txtCed.Text,
+                    Direccion = txtAdress.Text,
+                    Telefono = int.Parse(txtPhone.Text),
+                    email = txtEmail.Text,
+                    Estado = d.ToString(),
+                    Id = xdd
+                };
+                empleadoServices.Update(empleado);
+                dataEmpleado.DataSource = null;
+                limpiar();
+                dataEmpleado.DataSource = empleadoServices.Read();
+
+
+            }
+        }
+
+        private void DataEmpleado_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            xdd = (int)dataEmpleado.CurrentRow.Cells[0].Value;
+            awa = e.RowIndex;
+            textIDemp.Text = xdd.ToString();
+        }
+
+        private void BtnEmpleadoDel_Click(object sender, EventArgs e)
+        {
+            empleadoServices.Delete(empleadoServices.Read()[awa]);
+            dataEmpleado.DataSource = empleadoServices.Read();
+        }
+
+        private void FrmEmpleado_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
         }
     }
 }

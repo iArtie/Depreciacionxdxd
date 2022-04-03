@@ -232,15 +232,11 @@
             // 
             this.cmbEmpelado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpelado.FormattingEnabled = true;
-            this.cmbEmpelado.Items.AddRange(new object[] {
-            "Pancho",
-            "Juan",
-            "Agregar"});
-            this.cmbEmpelado.Location = new System.Drawing.Point(90, 445);
+            this.cmbEmpelado.Location = new System.Drawing.Point(90, 448);
             this.cmbEmpelado.Name = "cmbEmpelado";
             this.cmbEmpelado.Size = new System.Drawing.Size(234, 21);
-            this.cmbEmpelado.TabIndex = 23;
-            this.cmbEmpelado.SelectedIndexChanged += new System.EventHandler(this.CmbEmpelado_SelectedIndexChanged);
+            this.cmbEmpelado.TabIndex = 22;
+            this.cmbEmpelado.SelectedIndexChanged += new System.EventHandler(this.CmbEmpelado_SelectedIndexChanged_1);
             // 
             // Form1
             // 
@@ -297,7 +293,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         public System.Windows.Forms.ComboBox cmbEstado;
-        public System.Windows.Forms.ComboBox cmbEmpelado;
+        private System.Windows.Forms.ComboBox cmbEmpelado;
     }
 }
 
