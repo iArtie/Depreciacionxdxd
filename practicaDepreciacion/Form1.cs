@@ -248,7 +248,7 @@ namespace practicaDepreciacion
                 Hide();
             }
            
-            cmbEmpelado.Items.Clear();
+           // cmbEmpelado.Items.Clear();
           
             
             //AgregarItems();
